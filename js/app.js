@@ -1,7 +1,8 @@
-/*
- * Create a list that holds all of your cards
- */
-
+// List of cards
+var cardArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'];
+var cardValues = [];
+var cardIds = [];
+var cardsFlipped = [0];
 
 /*
  * Display the cards on the page
@@ -23,6 +24,7 @@ function shuffle(array) {
     }
 
     return array;
+}
 }
 
 
