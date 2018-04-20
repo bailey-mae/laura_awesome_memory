@@ -60,13 +60,26 @@ function cardOpen() {
 
 //if the cards match
 function match(){
-openedCards[0].classList.add("match", "disabled");
-openedCards[1].classList.add("match", "disabled");
-openedCards[0].classList.remove("show", "open", "no-event");
-openedCards[1].classList.remove("show", "open", "no-event");
-openedCards = [];
+    openedCards[0].classList.add("match", "disabled");
+    openedCards[1].classList.add("match", "disabled");
+    openedCards[0].classList.remove("show", "open", "no-event");
+    openedCards[1].classList.remove("show", "open", "no-event");
+    openedCards = [];
 }
 
+//if the cards do not match
+function noMatch(){
+    openedCards[0].classList.add("unmatched");
+    openedCards[1].classList.add("unmatched");
+    disable();
+    setTimeout(function(){
+        openedCards[0].classList.remove("show", "open", "no-event", "unmatched");
+        openedCards[1].classList.remove("show", "open", "no-event", "unmatched");
+        enable();
+        openedCards = [];
+    }, 1000);
+
+}
 
 /*
  * Display the cards on the page
@@ -103,23 +116,19 @@ function startGame(){
         });
         cards[i].classList.remove("show", "open", "match", "disabled");
     }
+};
 
 /*function newGame(){
-    cards = function shuffle(cards);
+    cards = shuffle(cards)
     for (var i = 0; i < shuffledDeck.length; i++) {
         [].forEach.call(shuffledDeck, function(item){
             deck.appendChild(item);
         });
-    }
 }
 
-document.body.onload = function newGame();
-*/
+document.body.onload = newGame();
 
 
-
-
-//if the list already has another card, check to see if the two cards match
 
  /*
  *  -
