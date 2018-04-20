@@ -42,6 +42,19 @@ var displayCard = function (){
    this.classList.toggle("disabled");
 }
 
+//add cards to openedCards array and check if cards are a match
+function cardOpen() {
+    openedCards.push(this);
+    var pairCompare = openedCards.length;
+    if(pairCompare === 2){
+        moveCounter();
+        if(openedCards[0].type === openedCards[1].type){
+            matched();
+        } else {
+            unmatched();
+        }
+    }
+};
 
 
 // add display card function to be initialized when card is clicked,
