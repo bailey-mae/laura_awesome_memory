@@ -1,8 +1,8 @@
-// List of cards
-var cardArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'];
-var cardValues = [];
-var cardIds = [];
-var cardsFlipped = [0];
+// cards array to hold all cards
+let card = document.getElementsByClassName("card");
+let cards = [...card];
+console.log(cards);
+
 
 /*
  * Display the cards on the page
@@ -25,7 +25,7 @@ function shuffle(array) {
 
     return array;
 }
-}
+
 
 
 /*
