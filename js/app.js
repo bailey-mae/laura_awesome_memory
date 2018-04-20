@@ -24,7 +24,7 @@ let matchedCard = document.getElementsByClassName("match");
  // declare modal
  let modal = document.getElementById("popup1")
 
- // array for opened cards
+//add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
 var openedCards = [];
 
 //set up the event listener for a card.
@@ -65,7 +65,9 @@ function shuffle(array) {
     }
 
     return array;
-}
+};
+
+document.body.onload = startGame();
 
 /*
  * loop through each card and create its HTML
@@ -93,17 +95,11 @@ function startGame(){
 document.body.onload = function newGame();
 */
 
-//add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
-var openedCards = [];
+
+
 
 //if the list already has another card, check to see if the two cards match
-function cardOpen(){
-    openedCards.push(this);
-    var pairCompare = openedCards.length
-    if (pairCompare === 2) {
 
-    }
-}
  /*
  *  -
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
