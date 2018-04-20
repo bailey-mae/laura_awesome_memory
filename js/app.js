@@ -1,11 +1,38 @@
 // cards array to hold all cards using rest parameter
-let card = document.getElementsByClassName("card");
-let cards = [...card]
+const card = document.getElementsByClassName('card');
+const cards = [...card];
 console.log(cards);
 
-const deck = document.getElementsById("card-deck")
+const deck = document.getElementsById('deck');
 
-/*set up the event listener for a card. If a card is clicked:
+// declaring move variable
+let moves = 0;
+let counter = document.querySelector(".moves");
+
+// declare variables for star icons
+const stars = document.querySelectorAll(".fa-star");
+
+// declaring variable of matchedCards
+let matchedCard = document.getElementsByClassName("match");
+
+ // stars list
+ let starsList = document.querySelectorAll(".stars li");
+
+ // close icon in modal
+ let closeicon = document.querySelector(".close");
+
+ // declare modal
+ let modal = document.getElementById("popup1")
+
+ // array for opened cards
+var openedCards = [];
+
+//set up the event listener for a card.
+for (var i = 0; i < cards.length; i++){
+   cards[i].addEventListener("click", displayCard);
+
+/*
+If a card is clicked:
 * display the card's symbol (put this functionality in another function that you call from this one)
 * add event listener click on the cards, display card on click
 */
@@ -14,8 +41,8 @@ var displayCard = function (){
    this.classList.toggle("show");
    this.classList.toggle("disabled");
 }
-for (var i = 0; i < cards.length; i++){
-   cards[i].addEventListener("click", displayCard);
+
+
 
 // add display card function to be initialized when card is clicked,
 //https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
@@ -44,8 +71,17 @@ function shuffle(array) {
  * loop through each card and create its HTML
  * add each card's HTML to the page
  */
-const deck = document.getElementsById("card-deck");
-function newGame(){
+function startGame(){
+    cards = shuffle(cards);
+    for (var i = 0; i < cards.length; i++){
+        deck.innerHTML = "";
+        [].forEach.call(cards, function(item) {
+            deck.appendChild(item);
+        });
+        cards[i].classList.remove("show", "open", "match", "disabled");
+    }
+
+/*function newGame(){
     cards = function shuffle(cards);
     for (var i = 0; i < shuffledDeck.length; i++) {
         [].forEach.call(shuffledDeck, function(item){
@@ -55,7 +91,7 @@ function newGame(){
 }
 
 document.body.onload = function newGame();
-
+*/
 
 //add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
 var openedCards = [];
