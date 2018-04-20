@@ -36,6 +36,8 @@ If a card is clicked:
 * display the card's symbol (put this functionality in another function that you call from this one)
 * add event listener click on the cards, display card on click
 */
+// add display card function to be initialized when card is clicked,
+//https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
 var displayCard = function (){
    this.classList.toggle("open");
    this.classList.toggle("show");
@@ -56,9 +58,15 @@ function cardOpen() {
     }
 };
 
+//if the cards match
+function match(){
+openedCards[0].classList.add("match", "disabled");
+openedCards[1].classList.add("match", "disabled");
+openedCards[0].classList.remove("show", "open", "no-event");
+openedCards[1].classList.remove("show", "open", "no-event");
+openedCards = [];
+}
 
-// add display card function to be initialized when card is clicked,
-//https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
 
 /*
  * Display the cards on the page
