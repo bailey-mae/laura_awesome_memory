@@ -1,9 +1,19 @@
-// cards array to hold all cards
+// cards array to hold all cards using rest parameter
 let card = document.getElementsByClassName("card");
 let cards = [...card];
 console.log(cards);
 
+//add event listener click on the cards, display card on click
+for (var i = 0; i < cards.length; i++){
+   cards[i].addEventListener("click", displayCard);
 
+// add display card function to be initialized when card is clicked,
+//https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+var displayCard = function (){
+   this.classList.toggle("open");
+   this.classList.toggle("show");
+   this.classList.toggle("disabled");
+}
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
