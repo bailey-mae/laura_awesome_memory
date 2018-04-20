@@ -3,7 +3,10 @@ let card = document.getElementsByClassName("card");
 let cards = [...card];
 console.log(cards);
 
-//add event listener click on the cards, display card on click
+/*set up the event listener for a card. If a card is clicked:
+* display the card's symbol (put this functionality in another function that you call from this one)
+* add event listener click on the cards, display card on click
+*/
 for (var i = 0; i < cards.length; i++){
    cards[i].addEventListener("click", displayCard);
 
@@ -17,8 +20,6 @@ var displayCard = function (){
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -36,11 +37,23 @@ function shuffle(array) {
     return array;
 }
 
+/*
+ * loop through each card and create its HTML
+ * add each card's HTML to the page
+ */
 
+const deck = document.querySelector(".deck");
+function newGame(){
+    var shuffledDeck = shuffle(cards);
+    for (var i = 0; i < shuffledDeck.length; i++) {
+        [].forEach.call(shuffledDeck, function(item){
+            deck.appendChild(item);
+        });
+    }
+}
 
 /*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
+ *
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
  *  - if the list already has another card, check to see if the two cards match
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
