@@ -1,9 +1,10 @@
 // cards array to hold all cards using rest parameter
-const card = document.getElementsByClassName('card');
-const cards = [...card];
+//let card = document.getElementsByClassName("card");
+let cards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o', 'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt',
+                    'fa-cube', 'fa-cube', 'fa-leaf', 'fa-leaf', 'fa-bicycle', 'fa-bicycle', 'fa-bomb', 'fa-bomb'];
 console.log(cards);
 
-const deck = document.getElementsById('deck');
+const deck = document.getElementById("deck");
 
 // declaring move variable
 let moves = 0;
@@ -27,59 +28,7 @@ let matchedCard = document.getElementsByClassName("match");
 //add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
 var openedCards = [];
 
-//set up the event listener for a card.
-for (var i = 0; i < cards.length; i++){
-   cards[i].addEventListener("click", displayCard);
 
-/*
-If a card is clicked:
-* display the card's symbol (put this functionality in another function that you call from this one)
-* add event listener click on the cards, display card on click
-*/
-// add display card function to be initialized when card is clicked,
-//https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
-var displayCard = function (){
-   this.classList.toggle("open");
-   this.classList.toggle("show");
-   this.classList.toggle("disabled");
-}
-
-//add cards to openedCards array and check if cards are a match
-function cardOpen() {
-    openedCards.push(this);
-    var pairCompare = openedCards.length;
-    if(pairCompare === 2){
-        moveCounter();
-        if(openedCards[0].type === openedCards[1].type){
-            matched();
-        } else {
-            unmatched();
-        }
-    }
-};
-
-//if the cards match
-function match(){
-    openedCards[0].classList.add("match", "disabled");
-    openedCards[1].classList.add("match", "disabled");
-    openedCards[0].classList.remove("show", "open", "no-event");
-    openedCards[1].classList.remove("show", "open", "no-event");
-    openedCards = [];
-}
-
-//if the cards do not match
-function noMatch(){
-    openedCards[0].classList.add("unmatched");
-    openedCards[1].classList.add("unmatched");
-    disable();
-    setTimeout(function(){
-        openedCards[0].classList.remove("show", "open", "no-event", "unmatched");
-        openedCards[1].classList.remove("show", "open", "no-event", "unmatched");
-        enable();
-        openedCards = [];
-    }, 1000);
-
-}
 
 /*
  * Display the cards on the page
@@ -91,7 +40,7 @@ function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
+        randomomIndex = Math.floor(Math.random() *currentIndex);
         currentIndex -= 1;
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
@@ -116,7 +65,76 @@ function startGame(){
         });
         cards[i].classList.remove("show", "open", "match", "disabled");
     }
+     //begin moves at 0
+    moves=0;
+    counter.innerHTML = moves;
+    //rating
+    for (var i = 0; i< stars.length; i++){
+        stars[i].style.color = "#FFD700";
+        stars[i].style.visibility = "visible";
+    }
+    //timer at 0
+    second =0;
+    minute = 0;
+    hour = 0;
+    var timer = document.querySelector('.timer');
+    timer.innerHTML = "0 mins 0 secs";
+    clearInterval(interval);
+}
+
+//set up the event listener for a card.
+for (var i = 0; i < cards.length; i++){
+   cards[i].addEventListener("click", displayCard);
+
+/*
+If a card is clicked:
+* display the card's symbol (put this functionality in another function that you call from this one)
+* add event listener click on the cards, display card on click
+*/
+// add display card function to be initialized when card is clicked,
+//https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+var displayCard = function (){
+   this.classList.toggle("open");
+   this.classList.toggle("show");
+   this.classList.toggle("disabled");
 };
+
+//add cards to openedCards array and check if cards are a match
+function cardOpen() {
+    openedCards.push(this);
+    var pairCompare = openedCards.length;
+    if(pairCompare === 2){
+        moveCounter();
+        if(openedCards[0].type === openedCards[1].type){
+            matched();
+        } else {
+            unmatched();
+        }
+    }
+};
+
+//if the cards match
+function match(){
+    openedCards[0].classList.add("match", "disabled");
+    openedCards[1].classList.add("match", "disabled");
+    openedCards[0].classList.remove("show", "open", "no-event");
+    openedCards[1].classList.remove("show", "open", "no-event");
+    openedCards = [];
+}
+
+//if the cards do not match, 1 second timeout
+function noMatch(){
+    openedCards[0].classList.add("unmatched");
+    openedCards[1].classList.add("unmatched");
+    disable();
+    setTimeout(function(){
+        openedCards[0].classList.remove("show", "open", "no-event", "unmatched");
+        openedCards[1].classList.remove("show", "open", "no-event", "unmatched");
+        enable();
+        openedCards = [];
+    }, 1000);
+
+}
 
 /*function newGame(){
     cards = shuffle(cards)
