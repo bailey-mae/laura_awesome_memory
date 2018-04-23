@@ -35,11 +35,37 @@ var openedCards = [];
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) { array= Array(16)
-    var currentIndex = array.length, temporaryValue, randomIndex;
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
 
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+/*Array.prototype.shuffle = function(){ array= Array(16)
+    var i = this.length, j, temp;
+    while(--i > 0) {
+        j = Math.floor(Math.random() * (i+1));
+        temp = this[j];
+        this[j] = this[i];
+        this[i] = temp;
+    }
+}
+    var currentIndex = array.length, temporaryValue, randomIndex;
     while (currentIndex !== 0) {
-        randomomIndex = Math.floor(Math.random() *currentIndex);
+        randomIndex = Math.floor(Math.random() *currentIndex);
         currentIndex -= 1;
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
@@ -48,6 +74,7 @@ function shuffle(array) { array= Array(16)
 
     return array;
 };
+*/
 
 document.body.onload = startGame();
 
@@ -64,6 +91,16 @@ function startGame(){
         });
     }
 }
+
+/*function startGame(){
+    var output = '';
+    cards.shuffle();
+    for(var i = 0; i < cards.length; i++){
+        output += '<div id="card'+i+'" onclick="displayCard(this,\''+cards[i]+'\')"></div>';
+    }
+    document.getElementById('.container').innerHTML = output;
+}
+*/
      //begin moves at 0
     moves=0;
     counter.innerHTML = moves;
