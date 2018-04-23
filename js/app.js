@@ -35,7 +35,7 @@ var openedCards = [];
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+function shuffle(array) { array= Array(16)
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -55,15 +55,15 @@ document.body.onload = startGame();
 * loop through each card and create its HTML
 * add each card's HTML to the page
 */
+const deck = document.querySelector(".deck");
 function startGame(){
-    cards = shuffle(cards);
-    for (var i = 0; i < cards.length; i++){
-        deck.innerHTML = "";
-        [].forEach.call(cards,function(item) {
-          deck.appendChild(item)
+    var shuffledCards = shuffle(cards);
+    for (var i = 0; i < shuffledCards.length; i ++){
+        [].forEach.call(shuffledCards, function(item){
+            deck.appendChild(item);
         });
-        cards[i].classList.remove("show", "open", "match", "disabled");
     }
+}
      //begin moves at 0
     moves=0;
     counter.innerHTML = moves;
@@ -79,7 +79,6 @@ function startGame(){
     var timer = document.querySelector('.timer');
     timer.innerHTML = "0 mins 0 secs";
     clearInterval(interval);
-}
 
 //set up the event listener for a card.
 //for (var i = 0; i < cards.length; i++){
@@ -177,6 +176,21 @@ function moveCounter(){
         }
     }
 }
+
+
+//playagain
+function playAgain(){
+    modal.classList.remove("show");
+    startGame();
+}
+
+//add event listener to each card
+for (var i = 0; i < cards.length; i++){
+    card = cards[i];
+    card.addEventListener("click", displayCard);
+    card.addEventListener("click", cardOpen);
+    card.addEventListener("click",congratulations);
+};
 //messed up function stuff
 /*function newGame(){
     cards = shuffle(cards)
