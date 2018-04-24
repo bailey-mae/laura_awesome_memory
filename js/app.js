@@ -64,8 +64,9 @@ function startGame(){
         [].forEach.call(shuffledCards, function(item){
             deck.appendChild(item);
         });
+        cards[i].classList.remove("show", "open", "match", "disabled");
     }
-}
+
 
 //moves counter start: begin moves at 0
     moves=0;
@@ -82,7 +83,7 @@ function startGame(){
     var timer = document.querySelector('.timer');
     timer.innerHTML = "0 mins 0 secs";
     //clearInterval(interval);
-
+}
 /*
 If a card is clicked:
 * display the card's symbol (put this functionality in another function that you call from this one)
@@ -164,7 +165,6 @@ function moveCounter(){
 
 var second = 0, minute = 0;
 var timer = document.querySelector(".timer");
-var interval;
 function startTimer(){
     interval = setInterval(function(){
         timer.innerHTML = minute+"mins "+second+"secs";
@@ -199,11 +199,7 @@ function startTimer(){
 }
 
 
-//playagain
-function playAgain(){
-    modal.classList.remove("show");
-    startGame();
-}
+
 
 //add event listener to each card
 for (var i = 0; i < cards.length; i++){
@@ -216,5 +212,9 @@ for (var i = 0; i < cards.length; i++){
 /*
  *if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
+//playagain
+function playAgain(){
+    modal.classList.remove("show");
+    startGame();
+}
 
