@@ -54,36 +54,15 @@ function shuffle(array) {
   return array;
 }
 
-/*Array.prototype.shuffle = function(){ array= Array(16)
-    var i = this.length, j, temp;
-    while(--i > 0) {
-        j = Math.floor(Math.random() * (i+1));
-        temp = this[j];
-        this[j] = this[i];
-        this[i] = temp;
-    }
-}
-    var currentIndex = array.length, temporaryValue, randomIndex;
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() *currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-};
-*/
-
 document.body.onload = startGame();
 
 /*
 * loop through each card and create its HTML
 * add each card's HTML to the page
 */
-const deck = document.querySelector(".deck");
+
 function startGame(){
+    const deck = document.querySelector(".deck");
     var shuffledCards = shuffle(cards);
     for (var i = 0; i < shuffledCards.length; i ++){
         [].forEach.call(shuffledCards, function(item){
@@ -115,7 +94,7 @@ function startGame(){
     hour = 0;
     var timer = document.querySelector('.timer');
     timer.innerHTML = "0 mins 0 secs";
-    clearInterval(interval);
+    //clearInterval(interval);
 
 //set up the event listener for a card.
 //for (var i = 0; i < cards.length; i++){
@@ -187,6 +166,7 @@ function enable(){
     });
 }
 
+
 //increment the move counter and display it on the page (put this functionality in another function that you call from this one)
 function moveCounter(){
     moves++;
@@ -197,6 +177,27 @@ function moveCounter(){
         hour = 0;
         startTimer();
     }
+
+
+var second = 0, minute = 0;
+var timer = document.querySelector(".timer");
+var interval;
+function startTimer(){
+    interval = setInterval(function(){
+        timer.innerHTML = minute+"mins "+second+"secs";
+        second++;
+        if(second == 60){
+            minute++;
+            second = 0;
+        }
+        if(minute == 60){
+            hour++;
+            minute = 0;
+        }
+    },1000);
+}
+
+
 //setting star score with moveCounter
     if (moves > 8 && moves < 12){
         for (i=0; i<3; i++){
@@ -226,7 +227,7 @@ for (var i = 0; i < cards.length; i++){
     card = cards[i];
     card.addEventListener("click", displayCard);
     card.addEventListener("click", cardOpen);
-    card.addEventListener("click",congratulations);
+    //card.addEventListener("click",congratulations);
 };
 //messed up function stuff
 /*function newGame(){
