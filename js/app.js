@@ -116,41 +116,17 @@ var displayCard = function (){
 //add cards to openedCards array and check if cards are a match
 function cardOpen() {
     openedCards.push(this);
-    var pairCompare = openedCards.length;
-    if(pairCompare === 2){
+    var len = openedCards.length;
+    if(len === 2){
         moveCounter();
         if(openedCards[0].type === openedCards[1].type){
-            match();
+            matched();
         } else {
-            noMatch()
+            unmatched();
         }
     }
 };
 
-//if the cards match
-function match(){
-    openedCards[0].classList.add("match", "disabled");
-    openedCards[1].classList.add("match", "disabled");
-    openedCards[0].classList.remove("show", "open", "no-event");
-    openedCards[1].classList.remove("show", "open", "no-event");
-    openedCards = [];
-}
-
-//if the cards do not match, 1 second timeout
-//if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
-function noMatch(){
-    openedCards[0].classList.add("unmatched");
-    openedCards[1].classList.add("unmatched");
-    disable();
-    setTimeout(function(){
-        openedCards[0].classList.remove("show", "open", "no-event", "unmatched");
-        openedCards[1].classList.remove("show", "open", "no-event", "unmatched");
-        enable();
-        openedCards = [];
-    }, 1000);
-}
-
-//if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
 function disable(){
     Array.prototype.filter.call(cards, function(card){
         card.classList.add('disabled');
@@ -164,6 +140,40 @@ function enable(){
             matchedCard[i].classList.add('disabled')
         );
     });
+}
+
+//if the cards match
+function matched(){
+    openedCards[0].classList.add("match", "disabled");
+    openedCards[1].classList.add("match", "disabled");
+    openedCards[0].classList.remove("show", "open", "no-event");
+    openedCards[1].classList.remove("show", "open", "no-event");
+    openedCards = [];
+}
+
+//if the cards do not match, 1 second timeout
+//if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+
+
+/*    setTimeout(function(){
+        openedCards[0].classList.remove("show", "open", "no-event", "unmatched");
+        openedCards[1].classList.remove("show", "open", "no-event", "unmatched");
+        enable();
+        openedCards = [];
+    }, 1000);
+}
+*/
+//if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+function unmatched(){
+    openedCards[0].classList.add("unmatched");
+    openedCards[1].classList.add("unmatched");
+    disable();
+    setTimeout(function(){
+        openedCards[0].classList.remove("show", "open", "unmatched");
+        openedCards[1].classList.remove("show", "open", "unmatched");
+        enable();
+        openedCards = [];
+    },1100);
 }
 
 
