@@ -17,7 +17,7 @@ let matchedCard = document.getElementsByClassName("match");
 let starsList = document.querySelectorAll(".stars li");
 
 // close icon in modal
-let closeicon = document.querySelector(".close");
+let closeIcon = document.querySelector(".close");
 
 // declare modal
 let modal = document.getElementById("popup1")
@@ -66,8 +66,6 @@ function startGame(){
         });
         cards[i].classList.remove("show", "open", "match", "disabled");
     }
-
-
 //moves counter start: begin moves at 0
     moves=0;
     counter.innerHTML = moves;
@@ -84,6 +82,7 @@ function startGame(){
     timer.innerHTML = "0 mins 0 secs";
     //clearInterval(interval);
 }
+
 /*
 If a card is clicked:
 * display the card's symbol (put this functionality in another function that you call from this one)
@@ -110,8 +109,6 @@ function cardOpen() {
         }
     }
 };
-
-
 
 //if the cards match
 function matched(){
@@ -142,6 +139,7 @@ function disable(){
     });
 }
 
+//enable unmatched cards, disable matched cards
 function enable(){
     Array.prototype.filter.call(cards, function(card){
         card.classList.remove('disabled');
@@ -161,26 +159,6 @@ function moveCounter(){
         hour = 0;
         startTimer();
     }
-
-
-var second = 0, minute = 0;
-var timer = document.querySelector(".timer");
-function startTimer(){
-    interval = setInterval(function(){
-        timer.innerHTML = minute+"mins "+second+"secs";
-        second++;
-        if(second == 60){
-            minute++;
-            second = 0;
-        }
-        if(minute == 60){
-            hour++;
-            minute = 0;
-        }
-    },1000);
-}
-
-
 //setting star score with moveCounter
     if (moves > 12 && moves < 20){
         for (i=0; i<3; i++){
@@ -198,20 +176,54 @@ function startTimer(){
     }
 }
 
-
-
+//timer
+var second = 0, minute = 0;
+var timer = document.querySelector(".timer");
+var interval;
+function startTimer(){
+    interval = setInterval(function(){
+        timer.innerHTML = minute+"mins "+second+"secs";
+        second++;
+        if(second == 60){
+            minute++;
+            second = 0;
+        }
+    },1000);
+}
 
 //add event listener to each card
 for (var i = 0; i < cards.length; i++){
     card = cards[i];
     card.addEventListener("click", displayCard);
     card.addEventListener("click", cardOpen);
-    //card.addEventListener("click",congratulations);
+    card.addEventListener("click",congratulations);
 };
 
 /*
  *if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+ function congratulations(){
+    if(matchedCard.length == 15){
+    clearInterval(interval);
+    finalTime=timer.innerHTML;
+
+    modal.classList.add("show");
+
+    var starRating = document.querySelector(".stars").innerHTML;
+
+    document.getElementById("finalMove").innerHTML = moves;
+    document.getElementById("starRating").innerHTML = starRating;
+    document.getElementById("totalTime").innerHTML = finalTime;
+    closeModal();
+    };
+ }
+
+ function closeModal(){
+    closeicon.addEventListener("click", function(e){
+        modal.classList.remove("show");
+        startGame();
+    });
+}
 //playagain
 function playAgain(){
     modal.classList.remove("show");
