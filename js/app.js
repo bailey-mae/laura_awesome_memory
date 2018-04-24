@@ -120,9 +120,9 @@ function cardOpen() {
     if(pairCompare === 2){
         moveCounter();
         if(openedCards[0].type === openedCards[1].type){
-            matched();
+            match();
         } else {
-            unmatched();
+            noMatch()
         }
     }
 };
@@ -238,7 +238,6 @@ for (var i = 0; i < cards.length; i++){
         });
 }
 
-document.body.onload = newGame();
 
 
 
