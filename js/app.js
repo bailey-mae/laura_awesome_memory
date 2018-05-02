@@ -31,10 +31,10 @@ var openedCards = [];
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
+// While there remain elements to shuffle...
+while (0 !== currentIndex) {
 
     // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -217,10 +217,12 @@ for (var i = 0; i < cards.length; i++){
     };
  }
 
+
+//close icon in modal
+ let closeIcon = document.querySelector(".close")
+
  function closeModal(){
-    // close icon in modal
-    let closeIcon = document.querySelector(".close");
-    closeicon.addEventListener("click", function(e){
+    closeIcon.addEventListener("click", function(e){
         modal.classList.remove("show");
         startGame();
     });
