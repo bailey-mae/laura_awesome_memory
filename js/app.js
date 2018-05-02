@@ -16,8 +16,6 @@ let matchedCard = document.getElementsByClassName("match");
 // stars list
 let starsList = document.querySelectorAll(".stars li");
 
-// close icon in modal
-let closeIcon = document.querySelector(".close");
 
 // declare modal
 let modal = document.getElementById("popup1")
@@ -117,6 +115,7 @@ function matched(){
     openedCards[0].classList.remove("show", "open");
     openedCards[1].classList.remove("show", "open");
     openedCards = [];
+    congratulations();
 }
 
 //if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
@@ -203,7 +202,7 @@ for (var i = 0; i < cards.length; i++){
  *if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
  function congratulations(){
-    if(matchedCard.length == 15){
+    if(matchedCard.length == 16){
     clearInterval(interval);
     finalTime=timer.innerHTML;
 
@@ -219,6 +218,8 @@ for (var i = 0; i < cards.length; i++){
  }
 
  function closeModal(){
+    // close icon in modal
+    let closeIcon = document.querySelector(".close");
     closeicon.addEventListener("click", function(e){
         modal.classList.remove("show");
         startGame();
