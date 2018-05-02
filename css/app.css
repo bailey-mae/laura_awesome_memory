@@ -81,10 +81,12 @@ h1 {
     font-size: 33px;
 }
 
+/*https://www.w3schools.com/cssref/css3_pr_backface-visibility.asp
+*/
 .deck .card.unmatched {
     animation-name: pulse;
-    -webkit-backface-visibility: visible !important;
-    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
     animation-duration: .75s;
     background: #e2043b;
 }
@@ -120,7 +122,7 @@ h1 {
     cursor: pointer;
 }
 
-/*congratualtions style
+/*Style for the Congratualtions Window
 */
 .overlay {
     position: fixed;
@@ -147,7 +149,7 @@ h1 {
     width: 85%;
     position: relative;
     transition: all 5s ease-in-out;
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'verdana';
 }
 
 .popup h2 {
@@ -194,7 +196,7 @@ h1 {
     display: block;
     margin: 0 auto;
     width: 50%;
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'verdana';
     color: #ffffff;
     border-radius: 5px;
 }
