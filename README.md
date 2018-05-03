@@ -4,17 +4,19 @@
 
 * [Instructions](#instructions)
 * [Contributing](#contributing)
+* [Licensing](#licensing)
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+To play the memory match game select a card, then select another card to see if you can make a match. If a match is made, the card faces will remain visible until the game is complete or reset. If a match is not made cards will return to starting. Try again until all cards are matched. A timer, star rating and move counter allow you to track your progress throughout the game. At any time you may reset the game using the refresh button on the top right or your web browser's refresh option. A congratulations window will let you know when you have won the game by matching all cards. This window will display stats for the game. Click the play again button to begin a new game.
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+The files in this repository are to fulfill an assignment for the Udacity Front End Developer Course. Since this project is meant for learning purposes pull requests are not considered. Thank you.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+##Licensing
+
+Rooster Sound Effect:
+Licence: The sound effect is permitted for non-commercial use under license ìAttribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+
+http://www.orangefreesounds.com/

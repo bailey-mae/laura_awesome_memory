@@ -21,8 +21,9 @@ let starsList = document.querySelectorAll(".stars li");
 let modal = document.getElementById("popup1")
 
 //add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
-var openedCards = [];
+let openedCards = [];
 
+const sound = document.getElementById('sound');
 
 /*
  * Display the cards on the page
@@ -46,7 +47,7 @@ while (0 !== currentIndex) {
     array[randomIndex] = temporaryValue;
   }
 
-  return array;
+return array;
 }
 
 document.body.onload = startGame();
@@ -73,7 +74,7 @@ function startGame(){
         stars[i].style.visibility = "visible";
     }
     //timer at 0
-    second =0;
+    second = 0;
     minute = 0;
     hour = 0;
     var timer = document.querySelector('.timer');
@@ -88,7 +89,7 @@ If a card is clicked:
 */
 // add display card function to be initialized when card is clicked,
 //https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
-var displayCard = function (){
+let displayCard = function (){
    this.classList.toggle("open");
    this.classList.toggle("show");
    this.classList.toggle("disabled");
@@ -177,8 +178,8 @@ function moveCounter(){
 
 //timer
 var second = 0, minute = 0;
-var timer = document.querySelector(".timer");
-var interval;
+let timer = document.querySelector(".timer");
+let interval;
 function startTimer(){
     interval = setInterval(function(){
         timer.innerHTML = minute+"mins "+second+"secs";
@@ -200,8 +201,10 @@ for (var i = 0; i < cards.length; i++){
 
 /*
  *if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
- function congratulations(){
+ play rooster sound
+*/
+
+function congratulations(){
     if(matchedCard.length == 16){
     clearInterval(interval);
     finalTime=timer.innerHTML;
@@ -214,9 +217,16 @@ for (var i = 0; i < cards.length; i++){
     document.getElementById("starRating").innerHTML = starRating;
     document.getElementById("totalTime").innerHTML = finalTime;
     closeModal();
+    var soundFlag= true;
+    //play rooster crowing
+        if (soundFlag) {
+        sound.pause();
+        sound.currentTime = 0;
+        sound.play();
+        soundFlag = false;
+        };
     };
- }
-
+}
 
 //close icon in modal
  let closeIcon = document.querySelector(".close")
