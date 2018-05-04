@@ -243,3 +243,14 @@ function playAgain(){
     startGame();
 }
 
+/*document.getElementsByClassName("restart").addEventListener("click", clearArray);
+function clearArray(){
+    return openedCards = [];
+};*/
+document.getElementById("restart").addEventListener("click", clearArray);
+
+function clearArray() {
+    return openedCards = [];
+}
+
+
