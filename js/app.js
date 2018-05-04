@@ -243,10 +243,8 @@ function playAgain(){
     startGame();
 }
 
-/*document.getElementsByClassName("restart").addEventListener("click", clearArray);
-function clearArray(){
-    return openedCards = [];
-};*/
+//clear openedCard array on click of restart button
+//fixes forced matching when single card open at restart
 document.getElementById("restart").addEventListener("click", clearArray);
 
 function clearArray() {
